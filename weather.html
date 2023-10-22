@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="source/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <title>PausWeather</title>
+  </head>
+  <body>
+     <div class="container">
+      <div class="row">
+        <div class="col">
+            <p class="emoticon">☀️</p>
+          <span class="days"
+            >Monday
+            <br />
+            36°C
+          </span>
+        </div>
+        <div class="col">
+            <p class="emoticon">🌤️</p>
+          <span class="days"
+            >Tuesday
+            <br />
+            30°C
+          </span>
+        </div>
+        <div class="col">
+            <p class="emoticon">🌥️</p>
+          <span class="days"
+            >Wednesday
+            <br />
+            25°C
+          </span>
+        </div>
+        <div class="col">
+            <p class="emoticon">🌦️</p>
+          <span class="days"
+            >Thursday
+            <br />
+            20°C
+          </span>
+        </div>
+        <div class="col">
+            <p class="emoticon">🌧️</p>
+          <span class="days"
+            >Friday
+            <br />
+            15°C
+          </span>
+        </div>
+        <div class="col">
+            <p class="emoticon">⛈️</p>
+          <span class="days"
+            >Saturday
+            <br />
+            10°C
+          </span>
+        </div>
+        <div class="row">
+          <div class="col"></div>
+          <div class="col">
+        <form id="search-form">
+          <input
+            type="text"
+            placeholder="What city are you in?"
+            style="text-align: center"
+            autocomplete="off"
+            autofocus="on"
+            id="question"
+          />
+          <input type="submit" value="Let's go" id="send"/>
+        </form>
+          </div>
+          <div class="col">
+            <button id="my-location">My Location</button>
+          </div>
+        <div class="row">
+          <div class="col">
+            <h2>
+              <span id="city">Get the</span>
+            <span id="temp">weather info anywhere...</span>
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <span class="weatherData">
+              <p>
+                <span class="humidity">
+                Humidity:
+                </span>
+                <br />
+                <span class="wind">
+                Wind-Speed:
+                </span>
+              </p>
+            </span>
+          </div>
+          <div class="col-4">
+            <span class="description">
+           <p id="description">
+            </p>
+            </span>
+          </div>
+          <div class="col-4">
+            <span class="time-date">
+              <p>
+                <span id="date">
+                Day, Month, Year
+                </span>
+                <br />
+                <span id="tiempo">
+                Time
+                </span>
+              </p>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <span class="sweater">
+              <button>Should I bring a sweater?</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="source/index.js"></script>
+    </script>
+  </body>
+</html>

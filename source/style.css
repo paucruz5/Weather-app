@@ -1,0 +1,94 @@
+.container {
+  border: 3px solid rgb(112, 3, 189);
+  margin: 50px auto;
+}
+p {
+  text-align: center;
+  font-size: 25px;
+  margin: 0 auto;
+}
+.days {
+  color: rgb(112, 3, 189);
+  font-family: "Edu TAS Beginner", cursive;
+  font-size: 25px;
+  border: 3px solid rgb(112, 3, 189);
+  padding: 10px;
+  display: block;
+  text-align: center;
+}
+form {
+  text-align: center;
+  font-family: "Edu TAS Beginner", cursive;
+  font-size: 25px;
+  padding: 60px 0 10px 0;
+}
+input {
+  padding: 10px;
+}
+h2 {
+  display: block;
+  font-size: 50px;
+  padding: 0;
+  border-radius: 40px;
+  text-align: center;
+  font-family: "Edu TAS Beginner", cursive;
+  color: rgb(112, 3, 189);
+  margin: 0px 30px 30px 30px;
+}
+button {
+  display: block;
+  font-size: 30px;
+  padding: 10px 50px;
+  border-radius: 40px;
+  font-family: "Edu TAS Beginner", cursive;
+  color: rgb(112, 3, 189);
+  margin: 50px auto;
+  background: rgb(255, 255, 255);
+}
+button:hover {
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+  background: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
+}
+.weatherData {
+  color: rgb(112, 3, 189);
+  font-family: "Edu TAS Beginner", cursive;
+  font-size: 20px;
+  border: 3px solid rgb(112, 3, 189);
+  padding: 5px;
+  display: block;
+  text-align: justify;
+}
+.weatherData:hover {
+  transform: scale(1.5);
+  border: none;
+}
+.description {
+  color: rgb(112, 3, 189);
+  font-family: "Edu TAS Beginner", cursive;
+  font-size: 30px;
+  padding: 5px;
+  display: block;
+  text-align: center;
+}
+.time-date {
+  color: rgb(112, 3, 189);
+  font-family: "Edu TAS Beginner", cursive;
+  font-size: 20px;
+  border: 3px solid rgb(112, 3, 189);
+  padding: 5px;
+  display: block;
+  text-align: center;
+}
+.time-date:hover {
+  transform: scale(1.5);
+  border: none;
+}
+.number {
+  font-size: 25px;
+}
+a {
+  text-decoration: none;
+  color: #ff822d;
+}

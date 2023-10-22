@@ -88,12 +88,13 @@ button:hover {
 .number {
   font-size: 25px;
 }
-a {
-  text-decoration: none;
-  color: #ff822d;
+h3 {
+  text-align: left;
+  font-size: 20px;
+  color: rgb(112, 3, 189);
+  font-family: "Edu TAS Beginner", cursive;
 }
 .website {
-  text-align: left;
-  font-size: 25px;
-  margin: 0 auto;
+  text-decoration: underline;
+  color: rgb(174, 82, 240);
 }

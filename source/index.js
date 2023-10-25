@@ -132,4 +132,4 @@ function searchCity(city) {
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", showData);
 
-searchCity("New York");
+searchCity("Ciudad de Mexico");

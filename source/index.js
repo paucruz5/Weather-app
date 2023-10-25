@@ -22,6 +22,7 @@ function showCity(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconData.setAttribute("alt", response.data.weather[0].description);
 
   let now = new Date();
   let days = [
@@ -129,6 +130,7 @@ function weatherData(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  iconData.setAttribute("alt", response.data.weather[0].description);
 
   console.log(response);
 }

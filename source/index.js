@@ -11,12 +11,17 @@ function showCity(response) {
   let myHumidityData = document.querySelector(".humidity");
   let myWindData = document.querySelector(".wind");
   let myDescriptionData = document.querySelector(".description");
+  let iconData = document.querySelector("#icon");
 
   myCity.innerHTML = `You are in ${response.data.name}`;
   myTempData.innerHTML = `and is ${myTemperature}°C here`;
   myHumidityData.innerHTML = `Humidity: ${myHumidity}%`;
   myWindData.innerHTML = `Wind: ${myWindSpeed}km/h`;
   myDescriptionData.innerHTML = `If you go outside you're going to see a ${myDescription}`;
+  iconData.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 
   let now = new Date();
   let days = [
@@ -113,12 +118,17 @@ function weatherData(response) {
   let humidityData = document.querySelector(".humidity");
   let windData = document.querySelector(".wind");
   let descriptionData = document.querySelector(".description");
+  let iconData = document.querySelector("#icon");
 
   ciudadName.innerHTML = `The weather in ${ciudad}`;
   gradosData.innerHTML = `is ${grados}°C`;
   humidityData.innerHTML = `Humidity: ${humidity}%`;
   windData.innerHTML = `Wind: ${windSpeed}km/h`;
   descriptionData.innerHTML = `If you go outside you're going to see a ${description}`;
+  iconData.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 
   console.log(response);
 }

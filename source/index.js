@@ -1,10 +1,10 @@
 //current location, time, date and weather
 
 function showCity(response) {
-  let myTemperature = Math.round(response.data.main.temp);
-  let myHumidity = response.data.main.humidity;
+  let myTemperature = Math.round(response.data.temperature.current);
+  let myHumidity = response.data.temperature.humidity;
   let myWindSpeed = Math.round(response.data.wind.speed);
-  let myDescription = response.data.weather[0].description;
+  let myDescription = response.data.condition.description;
 
   let myCity = document.querySelector("#city");
   let myTempData = document.querySelector("#temp");
@@ -13,18 +13,16 @@ function showCity(response) {
   let myDescriptionData = document.querySelector(".description");
   let iconData = document.querySelector("#icon");
 
-  myCity.innerHTML = `You are in ${response.data.name}`;
+  myCity.innerHTML = `You are in ${response.data.city}`;
   myTempData.innerHTML = `and is ${myTemperature}°C here`;
   myHumidityData.innerHTML = `Humidity: ${myHumidity}%`;
   myWindData.innerHTML = `Wind: ${myWindSpeed}km/h`;
   myDescriptionData.innerHTML = `If you go outside you're going to see a ${myDescription}`;
-  iconData.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconData.setAttribute("alt", response.data.weather[0].description);
+  iconData.setAttribute("src", `${response.data.condition.icon_url}`);
+  iconData.setAttribute("alt", response.data.condition.description);
 
   let now = new Date();
+
   let days = [
     "Sunday",
     "Monday",
@@ -36,6 +34,7 @@ function showCity(response) {
     "Sunday",
   ];
   let currentDay = days[now.getDay()];
+
   let months = [
     "January",
     "February",
@@ -51,6 +50,7 @@ function showCity(response) {
     "December",
   ];
   let currentMonth = months[now.getMonth()];
+
   let currentDate = now.getDate();
   let currentYear = now.getFullYear();
 
@@ -77,10 +77,10 @@ function formatDate(date) {
 }
 
 function myPosition(position) {
-  let apiKey = "2180315df5a397d94819d287230401b3";
+  let apiKey = "8ct2716ea6f8a04o8535eed14cbdd63a";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let url = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
 
   axios.get(url).then(showCity);
 }
@@ -101,18 +101,18 @@ function showData(event) {
   inputCity = inputCity.toLowerCase();
   inputCity = inputCity.trim();
 
-  let apiKey3 = "2180315df5a397d94819d287230401b3";
-  let url3 = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity}&appid=${apiKey3}&units=metric`;
+  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let url3 = `https://api.shecodes.io/weather/v1/current?query=${inputCity}&key=${apiKey3}&units=metric`;
 
   axios.get(url3).then(weatherData);
 }
 
 function weatherData(response) {
-  let ciudad = response.data.name;
-  let grados = Math.round(response.data.main.temp);
-  let humidity = response.data.main.humidity;
+  let ciudad = response.data.city;
+  let grados = Math.round(response.data.temperature.current);
+  let humidity = response.data.temperature.humidity;
   let windSpeed = Math.round(response.data.wind.speed);
-  let description = response.data.weather[0].description;
+  let description = response.data.condition.description;
 
   let ciudadName = document.querySelector("#city");
   let gradosData = document.querySelector("#temp");
@@ -126,18 +126,15 @@ function weatherData(response) {
   humidityData.innerHTML = `Humidity: ${humidity}%`;
   windData.innerHTML = `Wind: ${windSpeed}km/h`;
   descriptionData.innerHTML = `If you go outside you're going to see a ${description}`;
-  iconData.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-  iconData.setAttribute("alt", response.data.weather[0].description);
+  iconData.setAttribute("src", `${response.data.condition.icon_url}`);
+  iconData.setAttribute("alt", response.data.condition.description);
 
   console.log(response);
 }
 
 function searchCity(city) {
-  let apiKey2 = "2180315df5a397d94819d287230401b3";
-  let apiUrl2 = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey2}&units=metric`;
+  let apiKey2 = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiUrl2 = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey2}&units=metric`;
   axios.get(apiUrl2).then(weatherData);
 }
 

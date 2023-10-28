@@ -32,7 +32,7 @@
     <div class="container">
       <div class="wrapper">
         <div class="row">
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">☀️</p>
             <span class="days"
               >Monday
@@ -40,7 +40,7 @@
               36°C
             </span>
           </div>
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">🌤️</p>
             <span class="days"
               >Tuesday
@@ -48,7 +48,7 @@
               30°C
             </span>
           </div>
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">🌥️</p>
             <span class="days"
               >Wednesday
@@ -56,7 +56,7 @@
               25°C
             </span>
           </div>
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">🌦️</p>
             <span class="days"
               >Thursday
@@ -64,7 +64,7 @@
               20°C
             </span>
           </div>
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">🌧️</p>
             <span class="days"
               >Friday
@@ -72,7 +72,7 @@
               15°C
             </span>
           </div>
-          <div class="col">
+          <div class="col-2">
             <p class="emoticon">⛈️</p>
             <span class="days"
               >Saturday
@@ -80,65 +80,60 @@
               10°C
             </span>
           </div>
-          <div class="row">
-            <div class="col"></div>
-            <div class="col">
-              <form id="search-form">
-                <input
+        </div>
+        <div class="row">
+          <div class="col-2"></div>
+          <div class="col-8">
+            <form id="search-form">
+              <input
                   type="text"
                   placeholder="What city are you in?"
                   style="text-align: center"
                   autocomplete="off"
                   autofocus="on"
                   id="question"
-                />
-                <input type="submit" value="Let's go" id="send" />
-              </form>
-            </div>
-            <div class="col" id="button">
-              <button id="my-location">My Location</button>
-            </div>
-            <div class="row">
-              <div class="col">
-                <h2>
-                  <span id="city">Get the</span>
-                  <span id="temp">weather info anywhere...</span>
-                </h2>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <span class="weatherData">
-                  <p>
-                    <span class="humidity"> Humidity: </span>
-                    <br />
-                    <span class="wind"> Wind-Speed: </span>
-                  </p>
-                </span>
-              </div>
-              <div class="col-4">
-                <p>
-                  <span class="description"></span>
-                  <img src="" id="icon" alt="" />
-                </p>
-              </div>
-              <div class="col-4">
-                <span class="time-date">
-                  <p>
-                    <span id="date"> Day, Month, Year </span>
-                    <br />
-                    <span id="tiempo"> Time </span>
-                  </p>
-                </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <span class="sweater">
-                  <button>Should I bring a sweater?</button>
-                </span>
-              </div>
-            </div>
+              />
+              <input type="submit" value="Let's go" id="send" />
+            </form>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <h2>
+              <span id="city">Get the</span>
+              <span id="temp">weather info anywhere...</span>
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <span class="weatherData">
+              <p>
+                <span class="humidity"> Humidity: </span>
+                <br />
+                <span class="wind"> Wind-Speed: </span>
+              </p>
+            </span>
+          </div>
+          <div class="col-6">
+            <p>
+              <span class="description"></span>
+              <img src="" id="icon" alt="" />
+            </p>
+          </div>
+          <div class="col-3">
+            <span class="time-date">
+              <p>
+                <span id="date"> Day, Month, Year </span>
+                <br />
+                <span id="tiempo"> Time </span>
+              </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" id="button">
+            <button id="my-location">My Location</button>
           </div>
         </div>
       </div>

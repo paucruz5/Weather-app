@@ -23,7 +23,6 @@ function formatDate(date) {
     "Thursay",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
   let currentDay = days[now.getDay()];
 
@@ -75,8 +74,6 @@ function showCity(response) {
   iconData.setAttribute("alt", response.data.condition.description);
   currentHora.innerHTML = `⌚ ${formatTime(currentTime)}`;
   currentFecha.innerHTML = `${formatDate()}`;
-
-  getForecast(response.data.coordinates);
 }
 
 function searchCity(city) {
@@ -146,3 +143,39 @@ let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
 searchCity("Tizimin");
+
+// creating the days
+
+function displayForecast() {
+  let forecast = document.querySelector("#forecastDays");
+
+  let forecastDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursay",
+    "Friday",
+    "Saturday",
+  ];
+
+  let forecastHTML = `<div class="row">`;
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2">
+            <p class="emoticon">☀️</p>
+            <div class="weekDays"
+              >${day}
+              <br />
+              <span class="forecast" id="mon-temp">
+                <span id="maxtemp">0°C</span>
+                <span id="mintemp">0°C</span>
+              </span>
+            </div>
+          </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
+displayForecast();

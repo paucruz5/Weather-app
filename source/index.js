@@ -20,7 +20,7 @@ function formatDate(date) {
     "Monday",
     "Tuesday",
     "Wednesday",
-    "Thursay",
+    "Thursday",
     "Friday",
     "Saturday",
   ];
@@ -74,6 +74,8 @@ function showCity(response) {
   iconData.setAttribute("alt", response.data.condition.description);
   currentHora.innerHTML = `⌚ ${formatTime(currentTime)}`;
   currentFecha.innerHTML = `${formatDate()}`;
+
+  getForecast(response.data.coord);
 }
 
 function searchCity(city) {
@@ -85,12 +87,12 @@ function searchCity(city) {
 // my location and weather
 
 function myPosition(position) {
-  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiKey2 = "8ct2716ea6f8a04o8535eed14cbdd63a";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiUrl3 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey3}&units=metric`;
+  let apiUrl2 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey2}&units=metric`;
 
-  axios.get(apiUrl3).then(showCity);
+  axios.get(apiUrl2).then(showCity);
 }
 
 function getCurrentLocation(event) {
@@ -146,14 +148,15 @@ searchCity("Tizimin");
 
 // creating the days
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecast = document.querySelector("#forecastDays");
 
   let forecastDays = [
     "Monday",
     "Tuesday",
     "Wednesday",
-    "Thursay",
+    "Thursday",
     "Friday",
     "Saturday",
   ];
@@ -174,8 +177,15 @@ function displayForecast() {
             </div>
           </div>`;
   });
+
   forecastHTML = forecastHTML + `</div>`;
   forecast.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
-displayForecast();
+
+// creating API call for forescast
+
+function getForecast(coordinates) {
+  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiUrl3 = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&key=${apiKey3}&units=metric`;
+  axios.get(apiUrl3).then(displayForecast);
+}

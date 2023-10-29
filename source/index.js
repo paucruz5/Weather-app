@@ -1,26 +1,18 @@
-//current location, time, date and weather
+//current time, date, weather and location
 
-function showCity(response) {
-  let myTemperature = Math.round(response.data.temperature.current);
-  let myHumidity = response.data.temperature.humidity;
-  let myWindSpeed = Math.round(response.data.wind.speed);
-  let myDescription = response.data.condition.description;
+function formatTime(date) {
+  let currentHours = date.getHours();
+  if (currentHours < 10) {
+    currentHours = `0${currentHours}`;
+  }
+  let currentMinutes = date.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+  return `${currentHours}:${currentMinutes}`;
+}
 
-  let myCity = document.querySelector("#city");
-  let myTempData = document.querySelector("#temp");
-  let myHumidityData = document.querySelector(".humidity");
-  let myWindData = document.querySelector(".wind");
-  let myDescriptionData = document.querySelector(".description");
-  let iconData = document.querySelector("#icon");
-
-  myCity.innerHTML = `You are in ${response.data.city}`;
-  myTempData.innerHTML = `and is ${myTemperature}°C here`;
-  myHumidityData.innerHTML = `Humidity: ${myHumidity}%`;
-  myWindData.innerHTML = `Wind: ${myWindSpeed}km/h`;
-  myDescriptionData.innerHTML = `If you go outside you're going to see a ${myDescription}`;
-  iconData.setAttribute("src", `${response.data.condition.icon_url}`);
-  iconData.setAttribute("alt", response.data.condition.description);
-
+function formatDate(date) {
   let now = new Date();
 
   let days = [
@@ -54,35 +46,54 @@ function showCity(response) {
   let currentDate = now.getDate();
   let currentYear = now.getFullYear();
 
-  let currentFecha = document.querySelector("#date");
-  currentFecha.innerHTML = `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
+  return `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
+}
 
+function showCity(response) {
+  let myCity = document.querySelector("#city");
+  let myTempData = document.querySelector("#temp");
+  let myHumidityData = document.querySelector(".humidity");
+  let myWindData = document.querySelector(".wind");
+  let myDescriptionData = document.querySelector(".description");
+  let iconData = document.querySelector("#icon");
   let currentHora = document.querySelector("#tiempo");
+  let currentFecha = document.querySelector("#date");
+
+  celsiusTemp = response.data.temperature.current;
+
+  let myTemperature = Math.round(celsiusTemp);
+  let myWindSpeed = Math.round(response.data.wind.speed);
+  let myDescription = response.data.condition.description;
   let currentTime = new Date();
-  currentHora.innerHTML = `⌚ ${formatDate(currentTime)}`;
 
-  console.log(response);
+  myCity.innerHTML = `In ${response.data.city} `;
+  myTempData.innerHTML = `is ${myTemperature}°C`;
+  myHumidityData.innerHTML = `Humidity: ${response.data.temperature.humidity}%`;
+  myWindData.innerHTML = `Wind: ${myWindSpeed}km/h`;
+  myDescriptionData.innerHTML = `If you go outside you're going to see a ${myDescription}`;
+  iconData.setAttribute("src", `${response.data.condition.icon_url}`);
+  iconData.setAttribute("alt", response.data.condition.description);
+  currentHora.innerHTML = `⌚ ${formatTime(currentTime)}`;
+  currentFecha.innerHTML = `${formatDate()}`;
+
+  getForecast(response.data.coordinates);
 }
 
-function formatDate(date) {
-  let currentHours = date.getHours();
-  if (currentHours < 10) {
-    currentHours = `0${currentHours}`;
-  }
-  let currentMinutes = date.getMinutes();
-  if (currentMinutes < 10) {
-    currentMinutes = `0${currentMinutes}`;
-  }
-  return `${currentHours}:${currentMinutes}`;
+function searchCity(city) {
+  let apiKey = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showCity);
 }
+
+// my location and weather
 
 function myPosition(position) {
-  let apiKey = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let url = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
+  let apiUrl3 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey3}&units=metric`;
 
-  axios.get(url).then(showCity);
+  axios.get(apiUrl3).then(showCity);
 }
 
 function getCurrentLocation(event) {
@@ -97,48 +108,41 @@ locationButton.addEventListener("click", getCurrentLocation);
 
 function showData(event) {
   event.preventDefault();
-  let inputCity = document.querySelector("#question").value;
-  inputCity = inputCity.toLowerCase();
-  inputCity = inputCity.trim();
+  let inputCity = document.querySelector("#question");
 
-  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
-  let url3 = `https://api.shecodes.io/weather/v1/current?query=${inputCity}&key=${apiKey3}&units=metric`;
-
-  axios.get(url3).then(weatherData);
-}
-
-function weatherData(response) {
-  let ciudad = response.data.city;
-  let grados = Math.round(response.data.temperature.current);
-  let humidity = response.data.temperature.humidity;
-  let windSpeed = Math.round(response.data.wind.speed);
-  let description = response.data.condition.description;
-
-  let ciudadName = document.querySelector("#city");
-  let gradosData = document.querySelector("#temp");
-  let humidityData = document.querySelector(".humidity");
-  let windData = document.querySelector(".wind");
-  let descriptionData = document.querySelector(".description");
-  let iconData = document.querySelector("#icon");
-
-  ciudadName.innerHTML = `The weather in ${ciudad}`;
-  gradosData.innerHTML = `is ${grados}°C`;
-  humidityData.innerHTML = `Humidity: ${humidity}%`;
-  windData.innerHTML = `Wind: ${windSpeed}km/h`;
-  descriptionData.innerHTML = `If you go outside you're going to see a ${description}`;
-  iconData.setAttribute("src", `${response.data.condition.icon_url}`);
-  iconData.setAttribute("alt", response.data.condition.description);
-
-  console.log(response);
-}
-
-function searchCity(city) {
-  let apiKey2 = "8ct2716ea6f8a04o8535eed14cbdd63a";
-  let apiUrl2 = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey2}&units=metric`;
-  axios.get(apiUrl2).then(weatherData);
+  searchCity(inputCity.value);
 }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", showData);
 
-searchCity("Ciudad de Mexico");
+// Fahrenheit to Celsius
+
+let celsiusTemp = null;
+
+function changeToFahrenheit(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let tempSelector = document.querySelector("#temp");
+  let fahrConversion = (celsiusTemp * 9) / 5 + 32;
+  tempSelector.innerHTML = `is ${Math.round(fahrConversion)}°F `;
+}
+
+let fahrenheitLink = document.querySelector("#fahr");
+fahrenheitLink.addEventListener("click", changeToFahrenheit);
+
+// Celsius to Fahrenheit
+
+function changeToCelsius(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let tempSelector = document.querySelector("#temp");
+  tempSelector.innerHTML = `is ${Math.round(celsiusTemp)}°C`;
+}
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", changeToCelsius);
+
+searchCity("Tizimin");

@@ -3,11 +3,13 @@
   max-width: 1380px;
 }
 .wrapper {
-  border: 3px solid rgb(112, 3, 189);
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
-  background-color: rgb(225, 199, 250);
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 p {
   text-align: center;
@@ -15,10 +17,9 @@ p {
   margin: 0 auto;
 }
 .weekDays {
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   font-family: "Edu TAS Beginner", cursive;
   font-size: 25px;
-  border: 3px solid rgb(112, 3, 189);
   display: block;
   text-align: center;
 }
@@ -32,7 +33,7 @@ img {
   color: rgb(255, 0, 0);
 }
 #mintemp {
-  color: rgb(0, 38, 255);
+  color: rgb(243, 255, 11);
 }
 form {
   text-align: center;
@@ -44,15 +45,17 @@ form {
 #send {
   font-size: 30px;
   font-family: "Edu TAS Beginner", cursive;
-  color: rgb(112, 3, 189);
+  color: #ffffff;
   margin: 30px auto;
-  background: rgb(255, 255, 255);
+  background: transparent;
+  border: 1px solid white;
 }
 #send:hover {
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  background: rgb(112, 3, 189);
+  transform: scale(1.1);
   color: rgb(255, 255, 255);
+  border: 1px solid white;
 }
 h2 {
   display: block;
@@ -61,24 +64,24 @@ h2 {
   border-radius: 40px;
   text-align: center;
   font-family: "Edu TAS Beginner", cursive;
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   margin: 0px 30px 30px 30px;
 }
 .weatherData {
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   font-family: "Edu TAS Beginner", cursive;
   font-size: 20px;
-  border: 3px solid rgb(112, 3, 189);
   padding: 5px;
   display: block;
   text-align: justify;
+  border-radius: 15px;
 }
 .weatherData:hover {
-  background-color: rgb(255, 255, 255);
+  transform: scale(1.2);
   border: none;
 }
 .description {
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   font-family: "Edu TAS Beginner", cursive;
   font-size: 30px;
   padding: 5px;
@@ -86,17 +89,17 @@ h2 {
   text-align: center;
 }
 .time-date {
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   font-family: "Edu TAS Beginner", cursive;
   font-size: 20px;
-  border: 3px solid rgb(112, 3, 189);
   padding: 5px;
   display: block;
   text-align: center;
+  border-radius: 15px;
 }
 .time-date:hover {
   border: none;
-  background-color: rgb(255, 255, 255);
+  transform: scale(1.2);
 }
 button {
   display: block;
@@ -104,14 +107,15 @@ button {
   font-size: 30px;
   border-radius: 40px;
   font-family: "Edu TAS Beginner", cursive;
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   margin: 30px auto;
-  background: rgb(255, 255, 255);
+  background: transparent;
+  border: 1px solid white;
 }
 button:hover {
   cursor: pointer;
   transition: all 200ms ease-in-out;
-  background: rgb(112, 3, 189);
+  transform: scale(1.5);
   color: rgb(255, 255, 255);
 }
 .fahrenheit {
@@ -119,14 +123,17 @@ button:hover {
   font-size: 30px;
   font-family: "Edu TAS Beginner", cursive;
   text-align: center;
-  border: 2px solid black;
-  border-radius: 40px;
+  border: 1px solid white;
+  border-radius: 15px;
   padding: 10px 0;
   font-weight: bold;
-  background-color: rgb(255, 255, 255);
+  color: rgb(255, 0, 0);
+}
+.fahrenheit:hover {
+  transform: scale(1.2);
 }
 .active {
-  color: rgb(112, 3, 189);
+  color: rgb(255, 255, 255);
   cursor: default;
   text-decoration: none;
 }
@@ -136,10 +143,10 @@ button:hover {
 small {
   text-align: left;
   font-size: 20px;
-  color: rgb(112, 3, 189);
+  color: #8327f8;
   font-family: "Edu TAS Beginner", cursive;
 }
 .website {
   text-decoration: underline;
-  color: rgb(174, 82, 240);
+  color: #0a58ca;
 }

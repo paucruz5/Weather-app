@@ -22,8 +22,8 @@ p {
   display: block;
   text-align: center;
 }
-.emoticon {
-  font-size: 40px;
+img {
+  width: 90px;
 }
 .forecast {
   font-size: 20px;

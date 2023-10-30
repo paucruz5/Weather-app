@@ -1,4 +1,4 @@
-//current time, date, weather and location
+// My current time and date.
 
 function formatTime(date) {
   let currentHours = date.getHours();
@@ -48,6 +48,8 @@ function formatDate(date) {
   return `${currentDay}, ${currentMonth} ${currentDate}, ${currentYear}`;
 }
 
+// City, temperature, humidity, wind, description, icon, date and time
+
 function showCity(response) {
   let myCity = document.querySelector("#city");
   let myTempData = document.querySelector("#temp");
@@ -72,11 +74,13 @@ function showCity(response) {
   myDescriptionData.innerHTML = `If you go outside you're going to see a ${myDescription}`;
   iconData.setAttribute("src", `${response.data.condition.icon_url}`);
   iconData.setAttribute("alt", response.data.condition.description);
-  currentHora.innerHTML = `⌚ ${formatTime(currentTime)}`;
+  currentHora.innerHTML = `Your time is: ${formatTime(currentTime)}`;
   currentFecha.innerHTML = `${formatDate()}`;
 
-  getForecast(response.data.coord);
+  getForecast(response.data.coordinates);
 }
+
+// Default city's weather
 
 function searchCity(city) {
   let apiKey = "8ct2716ea6f8a04o8535eed14cbdd63a";
@@ -84,15 +88,17 @@ function searchCity(city) {
   axios.get(apiUrl).then(showCity);
 }
 
-// my location and weather
+searchCity("Tizimin");
+
+// My location and weather
 
 function myPosition(position) {
-  let apiKey2 = "8ct2716ea6f8a04o8535eed14cbdd63a";
+  let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiUrl2 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey2}&units=metric`;
+  let apiUrl3 = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey3}&units=metric`;
 
-  axios.get(apiUrl2).then(showCity);
+  axios.get(apiUrl3).then(showCity);
 }
 
 function getCurrentLocation(event) {
@@ -103,7 +109,7 @@ function getCurrentLocation(event) {
 let locationButton = document.querySelector("#my-location");
 locationButton.addEventListener("click", getCurrentLocation);
 
-//Specific city's weather
+// Searching any city's weather
 
 function showData(event) {
   event.preventDefault();
@@ -144,15 +150,13 @@ function changeToCelsius(event) {
 let celsiusLink = document.querySelector("#celsius");
 celsiusLink.addEventListener("click", changeToCelsius);
 
-searchCity("Tizimin");
+// Forecast
 
-// creating the days
-
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecast = document.querySelector("#forecastDays");
-
+function nameDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
   let forecastDays = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -160,32 +164,47 @@ function displayForecast(response) {
     "Friday",
     "Saturday",
   ];
+  return forecastDays[day];
+}
+
+function displayForecast(response) {
+  let dailyForecast = response.data.daily;
+  console.log(response.data);
+  let forecast = document.querySelector("#forecastDays");
 
   let forecastHTML = `<div class="row">`;
-  forecastDays.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2">
-            <p class="emoticon">☀️</p>
+  dailyForecast.forEach(function (weatherDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2">
+            <p>
+            <img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+              weatherDay.condition.icon
+            }.png alt=""/>
+            </p>
             <div class="weekDays"
-              >${day}
+              >${nameDay(weatherDay.time)}
               <br />
-              <span class="forecast" id="mon-temp">
-                <span id="maxtemp">0°C</span>
-                <span id="mintemp">0°C</span>
+              <span class="forecast">
+                <span id="maxtemp">${Math.round(
+                  weatherDay.temperature.maximum
+                )}°C</span>
+                <span id="mintemp">${Math.round(
+                  weatherDay.temperature.minimum
+                )}°C</span>
               </span>
             </div>
           </div>`;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
   forecast.innerHTML = forecastHTML;
 }
 
-// creating API call for forescast
-
 function getForecast(coordinates) {
   let apiKey3 = "8ct2716ea6f8a04o8535eed14cbdd63a";
-  let apiUrl3 = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.lat}&lon=${coordinates.lon}&key=${apiKey3}&units=metric`;
+  let apiUrl3 = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey3}&units=metric`;
   axios.get(apiUrl3).then(displayForecast);
 }
